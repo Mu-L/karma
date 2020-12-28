@@ -33,6 +33,8 @@ function StatusUpdater (socket, titleElement, bannerElement, browsersElement) {
   }
 
   socket.on('connect', updateBanner('connected'))
+  socket.on('connect_error', (error) => updateBanner('connect_error ' + error))
+  socket.on('karma_error', (error) => updateBanner('karma_error ' + error))
   socket.on('disconnect', updateBanner('disconnected'))
   socket.on('reconnecting', updateBanner('reconnecting in $ seconds...'))
   socket.on('reconnect', updateBanner('connected'))
